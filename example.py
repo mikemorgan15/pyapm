@@ -6,9 +6,9 @@ from pyapm.path import Path
 
 if __name__ == '__main__':
 
-	# create a configuration
+    # create a configuration
     config = ApmConfig(
-    	email_address = 'apm_user@example.com',
+        email_address = 'apm_user@example.com',
         password='my_password',
         server='my_server.pathviewcloud.com',
         org_id='1111')
@@ -31,7 +31,7 @@ if __name__ == '__main__':
     # retrieve a list of paths using the given filters
     print Path(config).get_paths(importance='10', networkType='WAN')
 
-   	# create a path using the given parameters
+    # create a path using the given parameters
     print Path(config).create_path(
         sourceAppliance='DC1-appliance',
        	target='8.8.8.8',
