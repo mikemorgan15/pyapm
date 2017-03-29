@@ -95,3 +95,5 @@ ENV/
 
 stuff/
 test.py
+.gitignore
+.DS_Store
