@@ -20,7 +20,7 @@ log.addHandler(sh)
 
 class ApmConfig(object):
 
-    def __init__(self, email_address, password, server, org_id):
+    def __init__(self, email_address, password, server, org_id='0'):
         self.username = email_address
         self.password = password
         self.server = server
