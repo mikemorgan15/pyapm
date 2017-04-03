@@ -53,6 +53,15 @@ class ApmBaseService(object):
             return e
         return result
 
+    def _patch(self, url=None, data=None):
+        try:
+            result = requests.patch(url, auth=self._auth(), headers=self.API_HEADERS, verify=False, data=data)
+        except Exception as e:
+            if self.config.log_level == 'debug':
+                log.error('\'PATCH\' - Connection failed to {} - {}'.format(url, e))
+            return e
+        return result
+
     def _put(self, url=None, data=None):
         try:
             result = requests.put(url, auth=self._auth(), headers=self.API_HEADERS, verify=False, data=data)
@@ -107,18 +116,6 @@ class ApmConfig(object):
         self.org_id = org_id
         self.log_level = log_level
 
-    def validate(self):
-        response = self._get(
-            url=self._url(path='organization'))
-        if self._verify(response):
-            ok = None
-            for org in response.json():
-                if org['id'] == int(self.org_id):
-                    ok = True
-            if ok:
-                return True
-            else:
-                return None
 
 class APMException(Exception):
     pass
