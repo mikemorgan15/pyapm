@@ -6,6 +6,12 @@ See example.py for usage examples.
 
 Not an official AppNeta product.  Caveat emptor.
 
+
+CURRENT STATUS:
+
+- Organization and Appliance API methods complete.  Path partially complete.
+
 TO-DO:
 
-- pretty much everything
+- Experience and Usage.
+- Pretty much everything else.
