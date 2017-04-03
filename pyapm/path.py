@@ -64,6 +64,24 @@ class Path(ApmBaseService):
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
+    def get_path_status(self, path_id):
+        """Get the status of a specific path, by path_id"""
+        response = self._get(url=self._url(path='path/{}/status'.format(path_id)))
+        if self._verify(response):
+            return response.json()
+        else:
+            return self._apm_http_error(sys._getframe().f_code.co_name, response)
+
+    def get_path_route(self, path_id, protocol='icmp'):
+        """Get the route of a specific path, by path_id.
+        Pass the protocol parameter ('icmp'/'udp'/'tcp'), or will default to ICMP
+        """
+        response = self._get(url=self._url(path='path/{}/traceRoute/{}'.format(path_id, protocol)))
+        if self._verify(response):
+            return response.json()
+        else:
+            return self._apm_http_error(sys._getframe().f_code.co_name, response)
+
     def create_path(self, **kwargs):
         """Create a path using the given parameters"""
         parameters = {}
@@ -72,6 +90,36 @@ class Path(ApmBaseService):
                 parameters[key] = value
         parameters['orgId'] = self.config.org_id
         response = self._post(url=self._url(path='path'), data=json.dumps(parameters))
+        if self._verify(response):
+            return response.json()
+        else:
+            return self._apm_http_error(sys._getframe().f_code.co_name, response)
+
+    def update_path(self, path_id, **kwargs):
+        """Update configuration of an existing path.
+        Only the reconfigured parameters need to be passed to this method
+        """
+        parameters = {}
+        if kwargs is not None:
+            for key, value in kwargs.iteritems():
+                parameters[key] = value
+        response = self._patch(url=self._url(path='path/{}'.format(path_id)), data=json.dumps(parameters))
+        if self._verify(response):
+            return response.json()
+        else:
+            return self._apm_http_error(sys._getframe().f_code.co_name, response)
+
+    def replace_path(self, path_id, **kwargs):
+        """Replaces an existing path, by path_id.
+        Effectively creates a new path over an existing path ID, so all required path parameters need to be passed.
+        Historic data for path prior to replacement is retained.
+        """
+        parameters = {}
+        if kwargs is not None:
+            for key, value in kwargs.iteritems():
+                parameters[key] = value
+        parameters['orgId'] = self.config.org_id
+        response = self._put(url=self._url(path='path/{}'.format(path_id)), data=json.dumps(parameters))
         if self._verify(response):
             return response.json()
         else:

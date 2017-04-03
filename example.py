@@ -39,6 +39,13 @@ if __name__ == '__main__':
     # retrieve a path by ID
     print path.get_path_by_id('12345')
 
+    # retrieve a path's status by ID
+    print path.get_path_status(path_id='12345')
+
+    # retrieve a path's route by ID
+    # pass the 'protocol' parameter to choose a specific protocol (icmp/udp/tcp) otherwise will default to ICMP
+    print path.get_path_route(path_id='12345', protocol='icmp')
+
     # retrieve a list of paths using the given filters
     print path.get_paths(sourceAppliance='mike-m35', target='8.8.8.8')
 
@@ -67,4 +74,22 @@ if __name__ == '__main__':
         importance='10',
         pathName='mike-m35 -> 8.8.8.8 (single)',
         description='A description of my path',
+        networkType='WAN')
+
+    # update an existing path's configuration.
+    # only the new/updated parameters need to be passed to this method.
+    print path.update_path(
+        path_id='12345', 
+        sourceAppliance='my-other-m25', 
+        description='this is the updated description')
+
+    # replaces an existing path by ID.
+    # all required path config parameters need to be passed.
+    # historic monitoring data for the replaced path is retained.
+    print path.replace_path(
+        path_id='12345',
+        sourceAppliance='my-other-m25',
+        target='apm.appneta.com',
+        groupName='A new group',
+        pathName='my-other-m25 -> apm.appneta.com (single)',
         networkType='WAN')
