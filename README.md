@@ -9,9 +9,10 @@ Not an official AppNeta product.  Caveat emptor.
 
 CURRENT STATUS:
 
-- Organization and Appliance API methods complete.  Path partially complete.
+- Appliance, Diagnostic, Organization and Path API methods present.
 
 TO-DO:
 
 - Experience and Usage.
+- Better documentation.
 - Pretty much everything else.

@@ -45,15 +45,15 @@ class Path(ApmBaseService):
         if kwargs is not None:
             if kwargs.get('to_time'):
                 if type(kwargs.get('to_time')) == datetime.datetime:
-                    parameters['to_time'] = time.mktime(kwargs.get('to_time').timetuple())
+                    parameters['to'] = int(time.mktime(kwargs.get('to_time').timetuple()))
                 else:
-                    parameters['to_time'] = kwargs.get('to_time')
+                    parameters['to'] = kwargs.get('to_time')
 
             if kwargs.get('from_time'):
                 if type(kwargs.get('from_time')) == datetime.datetime:
-                    parameters['from_time'] = time.mktime(kwargs.get('from_time').timetuple())
+                    parameters['from'] = int(time.mktime(kwargs.get('from_time').timetuple()))
                 else:
-                    parameters['from_time'] = kwargs.get('from_time')
+                    parameters['from'] = kwargs.get('from_time')
 
             if kwargs.get('metric'):
                 parameters['metric'] = ','.join(str(x) for x in kwargs.get('metric'))

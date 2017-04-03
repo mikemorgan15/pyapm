@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
 import datetime
-
 from pyapm import ApmConfig, Appliance, Path, Organization
-
 
 if __name__ == '__main__':
 
@@ -13,6 +11,9 @@ if __name__ == '__main__':
         password='correct horse battery staple',
         server='pvc-esp-1.pathviewcloud.com')
     
+
+    ########## Organization methods ##########
+
     # initialize Organization class
     organization = Organization(config)
     
@@ -23,6 +24,8 @@ if __name__ == '__main__':
     config.org_id = '4321'
 
 
+    ########## Appliance methods ##########
+
     # initialize Appliance class
     appliance = Appliance(config)
 
@@ -32,6 +35,8 @@ if __name__ == '__main__':
     # retrieve info for a specific appliance
     print appliance.get_appliance(appliance_id='1234')
 
+
+    ########## Path methods ##########
 
     # initialize Path class
     path = Path(config)
@@ -93,3 +98,23 @@ if __name__ == '__main__':
         groupName='A new group',
         pathName='my-other-m25 -> apm.appneta.com (single)',
         networkType='WAN')
+
+
+    ########## Diagnostic methods ##########
+
+    # initialize Diagnostic class
+    diagnostic = Diagnostic(config)
+
+    # create some datetime objects to specify a time range...
+    to_time = datetime.datetime.now()
+    from_time = datetime.datetime.now() - datetime.timedelta(hours = 1)
+
+    # ...then pass datetime objects to get_diagnostics method, to return diagnostics in that time range.
+    # accepts additional parameters to filter results.
+    print diagnostic.get_diagnostics(applianceName='mikes-m35', to_time=to_time, from_time=from_time)
+
+    # retrieve a single diagnostic test, by test_id.
+    print diagnostic.get_diagnostic(test_id='1234567')
+
+    # retrieve detail from a diagnostic test, by test_id.
+    print diagnostic.get_diagnostic_detail(test_id='1234567')
