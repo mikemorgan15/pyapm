@@ -10,7 +10,7 @@ if __name__ == '__main__':
     # create a configuration
     config = ApmConfig(
         email_address = 'user@example.com',
-        password='correct horse battery stable',
+        password='correct horse battery staple',
         server='pvc-esp-1.pathviewcloud.com')
     
     # initialize Organization class
