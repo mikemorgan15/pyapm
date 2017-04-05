@@ -15,7 +15,10 @@ class Appliance(ApmBaseService):
         """Returns data on all appliances within the specified organization"""
         response = self._get(url=self._url(path='appliance', query={'orgId':self.config.org_id}))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -24,6 +27,9 @@ class Appliance(ApmBaseService):
         if appliance_id:
             response = self._get(url=self._url(path='appliance/{}'.format(appliance_id)))
             if self._verify(response):
-                return response.json()
+                try:
+                    return response.json()
+                except:
+                    return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)

@@ -28,7 +28,7 @@ class Diagnostic(ApmBaseService):
                     else:
                         parameters['to'] = kwargs.get('to_time')
 
-                elif kwargs.get('from_time'):
+                elif key == 'from_time':
                     if type(kwargs.get('from_time')) == datetime.datetime:
                         parameters['from'] = int(time.mktime(kwargs.get('from_time').timetuple()))
                     else:
@@ -39,9 +39,11 @@ class Diagnostic(ApmBaseService):
 
         parameters['orgId'] = self.config.org_id
         response = self._get(url=self._url(path='diagnostic', query=parameters))
-        print response.url
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -49,7 +51,10 @@ class Diagnostic(ApmBaseService):
         """Get a specific diagnostic, by test_id"""
         response = self._get(url=self._url(path='diagnostic/{}'.format(test_id)))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -57,6 +62,9 @@ class Diagnostic(ApmBaseService):
         """Get a specific diagnostic, by test_id"""
         response = self._get(url=self._url(path='diagnostic/{}/detail'.format(test_id)))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)

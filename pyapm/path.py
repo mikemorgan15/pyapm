@@ -17,7 +17,10 @@ class Path(ApmBaseService):
         """Get data about a specific path, by path_id"""
         response = self._get(url=self._url(path='path/{}'.format(path_id)))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -30,7 +33,10 @@ class Path(ApmBaseService):
         parameters['orgId'] = self.config.org_id
         response = self._get(url=self._url(path='path', query=parameters))
         if self._verify(response):
-        	return response.json()
+        	try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -60,7 +66,10 @@ class Path(ApmBaseService):
 
         response = self._get(url=self._url(path='path/{}/data'.format(path_id), query=parameters))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -68,7 +77,10 @@ class Path(ApmBaseService):
         """Get the status of a specific path, by path_id"""
         response = self._get(url=self._url(path='path/{}/status'.format(path_id)))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -78,7 +90,10 @@ class Path(ApmBaseService):
         """
         response = self._get(url=self._url(path='path/{}/traceRoute/{}'.format(path_id, protocol)))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -91,7 +106,10 @@ class Path(ApmBaseService):
         parameters['orgId'] = self.config.org_id
         response = self._post(url=self._url(path='path'), data=json.dumps(parameters))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -105,7 +123,10 @@ class Path(ApmBaseService):
                 parameters[key] = value
         response = self._patch(url=self._url(path='path/{}'.format(path_id)), data=json.dumps(parameters))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -121,7 +142,10 @@ class Path(ApmBaseService):
         parameters['orgId'] = self.config.org_id
         response = self._put(url=self._url(path='path/{}'.format(path_id)), data=json.dumps(parameters))
         if self._verify(response):
-            return response.json()
+            try:
+                return response.json()
+            except:
+                return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 

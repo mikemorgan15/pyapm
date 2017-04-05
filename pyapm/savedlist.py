@@ -15,6 +15,9 @@ class SavedList(ApmBaseService):
         """Returns a list of all alert profiles in the configured org"""
         response = self._get(url=self._url(path='savedList', query={'orgId': self.config.org_id}))
         if self._verify(response):
-            return response.json()
+            try:
+            	return response.json()
+            except:
+            	return {}
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
