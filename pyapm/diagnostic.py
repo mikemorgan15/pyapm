@@ -5,7 +5,7 @@ import datetime
 import time
 import sys
 
-from base import ApmBaseService, APMException
+from base import ApmBaseService
 
 
 class Diagnostic(ApmBaseService):

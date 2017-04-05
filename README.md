@@ -9,10 +9,11 @@ Not an official AppNeta product.  Caveat emptor.
 
 CURRENT STATUS:
 
-- Appliance, Diagnostic, Organization and Path API methods present.
+- Appliance, Alert Profile, Diagnostic, Flow, Organization, Path and Saved List API methods are present.
 
 TO-DO:
 
-- Experience and Usage.
+- Experience (formerly AppView).
 - Better documentation.
-- Pretty much everything else.
+- Unit testing.
+- Helper methods.

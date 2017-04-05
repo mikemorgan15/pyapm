@@ -3,7 +3,7 @@
 import json
 import sys
 
-from base import ApmBaseService, APMException
+from base import ApmBaseService
 
 
 class Organization(ApmBaseService):

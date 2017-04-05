@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import datetime
-from pyapm import ApmConfig, Appliance, Path, Organization
+from pyapm import ApmConfig, AlertProfile, Appliance, Diagnostic, Flow, Organization, Path, SavedList
 
 if __name__ == '__main__':
 
@@ -118,3 +118,46 @@ if __name__ == '__main__':
 
     # retrieve detail from a diagnostic test, by test_id.
     print diagnostic.get_diagnostic_detail(test_id='1234567')
+
+
+    ########## Alert Profile methods ##########
+
+    # initialize Alert Profile class
+    alert_profile = AlertProfile(config)
+
+    # retrieve a list of all alert profiles from the org specified in your config
+    print alert_profile.get_alert_profiles()
+
+    # retrieve a specific alert profile, by id
+    print alert_profile.get_alert_profile_by_id('7451')
+
+
+    ########## Saved List methods ##########
+
+    # initialize Saved List class
+    saved_list = SavedList(config)
+
+    # retrieve a list of all saved lists from the org specified in your config
+    print saved_list.get_saved_lists()
+
+
+    ########## Flow methods ##########
+
+    # initialize Flow class
+    flow = Flow(config)
+
+    # retreive a list of FlowView configured appliances
+    print flow.get_appliances()
+
+    # create some datetime objects to specify a time range...
+    to_time = datetime.datetime.now()
+    from_time = datetime.datetime.now() - datetime.timedelta(hours = 1)
+
+    # ...pass the datetime objects to the get_top_applications method, to return the top applications within that time range...
+    print flow.get_top_applications(appliance_id='14712', interface='eth5', to_time=to_time, from_time=from_time, n='20')
+
+    #...or to the get_top_conversations to retrieve top conversations.
+    print flow.get_top_conversations(appliance_id='14712', interface='eth5', to_time=to_time, from_time=from_time, n='20')
+
+    # retrieve a list of applications (both stock and custom)
+    print flow.get_applications()
