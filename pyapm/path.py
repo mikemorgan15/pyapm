@@ -33,7 +33,7 @@ class Path(ApmBaseService):
         parameters['orgId'] = self.config.org_id
         response = self._get(url=self._url(path='path', query=parameters))
         if self._verify(response):
-        	try:
+            try:
                 return response.json()
             except:
                 return {}

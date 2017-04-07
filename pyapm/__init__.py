@@ -6,6 +6,7 @@ from flow import Flow
 from organization import Organization
 from path import Path
 from savedlist import SavedList
+from webapplication import WebApplication
 
 __all__ = [
     'AlertProfile',
@@ -15,4 +16,5 @@ __all__ = [
     'Flow',
     'Organization',
     'Path',
-    'SavedList']
+    'SavedList',
+    'WebApplication']

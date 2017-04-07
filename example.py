@@ -161,3 +161,33 @@ if __name__ == '__main__':
 
     # retrieve a list of applications (both stock and custom)
     print flow.get_applications()
+
+
+    ########## Web Application methods ##########
+
+    # initialize the WebApplication class
+    webapp = WebApplication(config)
+
+    # retrieve a list of available web apps in the configured org
+    print webapp.get_web_apps()
+
+    # retrieve a specific web app by web_app_id
+    print webapp.get_web_app(web_app_id='5678')
+
+    # delete a web app, by web_app_id
+    print webapp.delete_web_app(web_app_id='5678')
+
+    # retrieve a list of web monitors in a chosen web app, by web_app_id
+    print webapp.get_web_monitors(web_app_id='5678')
+
+    # retrieve a specific web monitor from a web app, by web_app_id and web_monitor_id
+    print webapp.get_web_monitors(web_app_id='5678', web_monitor_id='65432')
+
+    # create some datetime objects to specify a time range, and create a list of desired metrics...
+    to_time = datetime.datetime.now()
+    from_time = datetime.datetime.now() - datetime.timedelta(hours = 1)
+    metric = ['servertiming', 'browsertiming']
+    
+    # ...then pass these to the get_web_monitor_data to retrieve monitoring data from a specific web monitor over a given time range.
+    print webapp.get_web_monitor_data(web_app_id='5678', web_monitor_id='76543', to_time=to_time, from_time=from_time, metric=metric)
+    
