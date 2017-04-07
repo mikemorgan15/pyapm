@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import datetime
-from pyapm import ApmConfig, AlertProfile, Appliance, Diagnostic, Flow, Organization, Path, SavedList
+from pyapm import ApmConfig, AlertProfile, Appliance, Diagnostic, Flow, Organization, Path, SavedList, WebApplication
 
 if __name__ == '__main__':
 

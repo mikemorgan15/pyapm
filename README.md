@@ -9,11 +9,12 @@ Not an official AppNeta product.  Caveat emptor.
 
 CURRENT STATUS:
 
-- Appliance, Alert Profile, Diagnostic, Flow, Organization, Path and Saved List API methods are present.
+- Appliance, Alert Profile, Diagnostic, Flow, Organization, Path and Saved List classes are present.
+- WebApplication class partially complete.
 
 TO-DO:
 
-- Experience (formerly AppView).
 - Better documentation.
+- Better examples.
 - Unit testing.
 - Helper methods.
