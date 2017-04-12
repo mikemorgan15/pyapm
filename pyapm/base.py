@@ -95,9 +95,11 @@ class ApmBaseService(object):
 
     def _apm_http_error(self, api_method, response):
         if type(response) == requests.models.Response:
-            if response.json().get('messages')[0]:
+            #if response.json().get('messages')[0]:
+            try:
                 message = response.json().get('messages')[0]
-            else:
+            #else:
+            except:
                 message = 'Unexpected failure'
             raise APMException('{} - {}: {}'.format(api_method, response.status_code, message))
         else:

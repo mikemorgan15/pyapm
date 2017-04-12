@@ -43,7 +43,7 @@ class Diagnostic(ApmBaseService):
             try:
                 return response.json()
             except:
-                return {}
+                return None
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -54,7 +54,7 @@ class Diagnostic(ApmBaseService):
             try:
                 return response.json()
             except:
-                return {}
+                return None
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
@@ -65,6 +65,6 @@ class Diagnostic(ApmBaseService):
             try:
                 return response.json()
             except:
-                return {}
+                return None
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
