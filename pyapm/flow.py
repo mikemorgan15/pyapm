@@ -24,8 +24,18 @@ class Flow(ApmBaseService):
     def get_top_applications(self, appliance_id, interface, **kwargs):
         '''Returns a list of the top applications for the given period.
         
-        - 'to_time' and 'from_time' can either be unix timestamps, or datetime objects.
-        - Other parameters can be passed to filter results
+        Parameters:
+        appliance_id (required)
+        interface (required)
+        orderBy - metric by which the top N applications are ordered by. Optional. Default is bytes (optional)
+        n - number of applications to return (max 100). Optional. Default is 10. (optional)
+        from_time - start of desired time window, can be unix timestamp or datetime object (optional)
+        to_time - end of desired time window, can be unix timestamp or datetime object (optional)
+        endpoint - endpoint filter criteria as a comma separated list of "[src|dst] {IP|hostname|IP subnet|IP wildcard}". (optional)
+        endpointMatch - endpoint filter match type: ANY, ALL and NOT. Optional. Default is ANY. (optional)
+        application - application filter criteria as a comma separated list of application IDs. (optional)
+        category - application filter criteria as a comma separated list of categories. (optional)
+        classification - application filter criteria as a comma separated list of classfications. (optional)
         '''
         parameters = {}
         if kwargs is not None:
@@ -56,8 +66,19 @@ class Flow(ApmBaseService):
     def get_top_conversations(self, appliance_id, interface, **kwargs):
         '''Returns a list of the top conversations for the given period.
         
-        - 'to_time' and 'from_time' can either be unix timestamps, or datetime objects.
-        - Other parameters can be passed to filter results
+        Parameters:
+        appliance_id (required)
+        interface (required)
+        orderBy - metric by which the top N applications are ordered by. Optional. Default is bytes (optional)
+        n - number of applications to return (max 100). Optional. Default is 10. (optional)
+        from_time - start of desired time window, can be unix timestamp or datetime object (optional)
+        to_time - end of desired time window, can be unix timestamp or datetime object (optional)
+        endpoint - endpoint filter criteria as a comma separated list of "[src|dst] {IP|hostname|IP subnet|IP wildcard}". (optional)
+        endpointMatch - endpoint filter match type: ANY, ALL and NOT. Optional. Default is ANY. (optional)
+        application - application filter criteria as a comma separated list of application IDs. (optional)
+        category - application filter criteria as a comma separated list of categories. (optional)
+        classification - application filter criteria as a comma separated list of classfications. (optional)
+        hostnames - enable reverse DNS hostname resolution. Valid values are: private and public. (optional)
         '''
         parameters = {}
         if kwargs is not None:

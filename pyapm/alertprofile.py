@@ -23,7 +23,11 @@ class AlertProfile(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_alert_profile_by_id(self, alert_profile_id):
-        """Returns a specific alert profile by alert_profile_id"""
+        """Returns a specific alert profile by alert_profile_id
+
+        Parameters:
+        alert_profile_id (required)
+        """
         response = self._get(url=self._url(path='alertProfile/{}'.format(alert_profile_id)))
         if self._verify(response):
             try:

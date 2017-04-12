@@ -32,7 +32,7 @@ if __name__ == '__main__':
     # list appliances within the org specified in the config
     print appliance.list_appliances()
 
-    # retrieve info for a specific appliance
+    # retrieve info for a specific appliance, by appliance_id
     print appliance.get_appliance(appliance_id='1234')
 
 
@@ -128,8 +128,8 @@ if __name__ == '__main__':
     # retrieve a list of all alert profiles from the org specified in your config
     print alert_profile.get_alert_profiles()
 
-    # retrieve a specific alert profile, by id
-    print alert_profile.get_alert_profile_by_id('7451')
+    # retrieve a specific alert profile, by alert_profile_id
+    print alert_profile.get_alert_profile_by_id(alert_profile_id='7451')
 
 
     ########## Saved List methods ##########

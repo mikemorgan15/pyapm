@@ -14,11 +14,18 @@ class Diagnostic(ApmBaseService):
         self.config = config
 
     def get_diagnostics(self, **kwargs):
-        '''Get a list of diagostic tests matching the specified parameters.
-        'to_time' and 'from_time' parameters can be passed for filtering within a particular time range.
+        """Get a list of diagostic tests matching the specified parameters.
         
-        - 'to_time' and 'from_time' can either be unix timestamps, or datetime objects.
-        '''
+        Parameters:
+        name - the descriptive name for the test (allows wildcards) (optional)
+        pathId - path id is an integer that identifies a specific path (optional)
+        applianceName - the name of the source appliance (allows wildcards) (optional)
+        target - the ip or hostname of the target (allows wildcards) (optional)
+        to_time - the end of the desired time range. Can be unix timestamp or datetime object. (optional)
+        from_time - the start of the desired time range. Can be unix timestamp or datetime object. (optional)
+        page - the page of results to return (optional)
+        limit - the number of results per page (optional)
+        """
         parameters = {}
         if kwargs is not None:
             for key, value in kwargs.iteritems():
@@ -48,7 +55,11 @@ class Diagnostic(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_diagnostic(self, test_id):
-        """Get a specific diagnostic, by test_id"""
+        """Get a specific diagnostic, by test_id
+        
+        Parameters:
+        test_id (required)
+        """
         response = self._get(url=self._url(path='diagnostic/{}'.format(test_id)))
         if self._verify(response):
             try:
@@ -59,7 +70,11 @@ class Diagnostic(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_diagnostic_detail(self, test_id):
-        """Get a specific diagnostic, by test_id"""
+        """Get a specific diagnostic, by test_id
+
+        Parameters:
+        test_id (required)
+        """        
         response = self._get(url=self._url(path='diagnostic/{}/detail'.format(test_id)))
         if self._verify(response):
             try:

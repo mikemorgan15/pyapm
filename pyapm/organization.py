@@ -13,11 +13,11 @@ class Organization(ApmBaseService):
 
     def list_organizations(self):
         """List all organizations on the specified server that the given user account has access to"""
-    	response = self._get(url=self._url(path='organization'))
+        response = self._get(url=self._url(path='organization'))
         if self._verify(response):
             try:
-            	return response.json()
+                return response.json()
             except:
-            	return None
+                return None
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)

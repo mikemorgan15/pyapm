@@ -16,8 +16,8 @@ class SavedList(ApmBaseService):
         response = self._get(url=self._url(path='savedList', query={'orgId': self.config.org_id}))
         if self._verify(response):
             try:
-            	return response.json()
+                return response.json()
             except:
-            	return None
+                return None
         else:
             return self._apm_http_error(sys._getframe().f_code.co_name, response)

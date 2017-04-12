@@ -23,7 +23,11 @@ class Appliance(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_appliance(self, appliance_id=None):
-        """Gets data about a specific appliance, by appliance_id"""
+        """Gets data about a specific appliance, by appliance_id
+
+        Parameters:
+        appliance_id (required)
+        """
         if appliance_id:
             response = self._get(url=self._url(path='appliance/{}'.format(appliance_id)))
             if self._verify(response):

@@ -25,7 +25,11 @@ class WebApplication(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_web_app(self, web_app_id):
-        """Retrieve a specific web application, by web_app_id"""
+        """Retrieve a specific web application, by web_app_id
+
+        Parameters:
+        web_app_id (required)
+        """
         response = self._get(url=self._url(path='webApplication/{}'.format(web_app_id)))
         if self._verify(response):
             try:
@@ -36,7 +40,11 @@ class WebApplication(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def delete_web_app(self, web_app_id):
-        """Delete a specific web application, by web_app_id"""
+        """Delete a specific web application, by web_app_id
+
+        Parameters:
+        web_app_id (required)
+        """
         response = self._delete(url=self._url(path='webApplication/{}'.format(web_app_id)))
         if self._verify(response):
             try:
@@ -47,7 +55,11 @@ class WebApplication(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_web_monitors(self, web_app_id):
-        """Retrieve a list of web monitors in a specific web application, by web_app_id"""
+        """Retrieve a list of web monitors in a specific web application, by web_app_id
+
+        Parameters:
+        web_app_id (required)
+        """
         response = self._get(url=self._url(path='webApplication/{}/monitor'.format(web_app_id)))
         if self._verify(response):
             try:
@@ -58,7 +70,12 @@ class WebApplication(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def get_web_monitor(self, web_app_id, web_monitor_id):
-        """Retrieve a web monitor by it's web_app_id and web_monitor_id"""
+        """Retrieve a web monitor by it's web_app_id and web_monitor_id
+
+        Parameters:
+        web_app_id (required)
+        web_monitor_id (required)
+        """
         response = self._get(url=self._url(path='webApplication/{}/monitor/{}'.format(web_app_id, web_monitor_id)))
         if self._verify(response):
             try:
@@ -71,9 +88,19 @@ class WebApplication(ApmBaseService):
     def get_web_monitor_data(self, web_app_id, web_monitor_id, **kwargs):
         '''Get monitoring data for a web app from a specific web monitor, by web_app_id and web_monitor_id.
         Additional 'to_time', 'from_time' and 'metric' parameters can be passed for filtering purposes.
-        
-        - 'to_time' and 'from_time' can either be unix timestamps, or datetime objects.
-        - 'metric' should be a list of the metrics you wish to retrieve. 
+
+        Parameters:
+        web_app_id (required)
+        web_monitor_id (required)
+        to_time - end of required time range. Can be eitehr unix timestamp or datetime object. (optional) 
+        from_time - start of required time range. Can be eitehr unix timestamp or datetime object. (optional)
+        metric - a list of required metrics.  (optional).  Available options are:
+            networktiming,
+            servertiming,
+            browsertiming,
+            apdexscore,
+            basepagesize,
+            statuscode
         '''
         parameters = {}
         if kwargs is not None:
