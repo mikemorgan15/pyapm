@@ -3,6 +3,7 @@
 A lightweight Python wrapper for the AppNeta Performance Manager API
 
 See example.py for usage examples.
+Run 'pip install -r requirements.txt' to install dependencies (only 'Requests' at this time).
 
 Not an official AppNeta product.  Caveat emptor.
 
@@ -14,7 +15,7 @@ CURRENT STATUS:
 
 TO-DO:
 
-- Better documentation.
 - Better examples.
-- Unit testing.
-- Helper methods.
+- Unit tests.
+- Improved exception handling.
+- Maybe some bug fixing.
