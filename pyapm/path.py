@@ -62,8 +62,7 @@ class Path(ApmBaseService):
 
     def get_path_data(self, path_id, **kwargs):
         '''Get monitoring data for a specified path, by path_id.
-        Additional 'to_time', 'from_time' and 'metric' parameters can be passed for filtering purposes.
-        
+                
         Parameters:
         path_id (required)
         to_time - the end of the required time range. Can be unix timestamp or datetime object (optional) 
@@ -177,8 +176,7 @@ class Path(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def update_path(self, path_id, **kwargs):
-        """Update configuration of an existing path.
-        Only the reconfigured parameters need to be passed to this method
+        """Update configuration of an existing path.  Only the reconfigured parameters need to be passed to this method
 
         Parameters:
         path_id (required)
@@ -214,10 +212,8 @@ class Path(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def replace_path(self, path_id, **kwargs):
-        """Replaces an existing path, by path_id.
-        Effectively creates a new path over an existing path ID, so all required path parameters need to be passed.
-        Historic data for path prior to replacement is retained.
-
+        """Replaces an existing path, by path_id.  Effectively creates a new path over an existing path ID, so all required path parameters need to be passed.
+        
         Parameters:
         sourceAppliance,
         target,
@@ -252,8 +248,7 @@ class Path(ApmBaseService):
             return self._apm_http_error(sys._getframe().f_code.co_name, response)
 
     def delete_path(self, path_id=None):
-        """Delete a specific path, by path_id.
-        Returns 'True' if successful.
+        """Delete a specific path, by path_id.  Returns 'True' if successful.
 
         Parameters:
         path_id (required)

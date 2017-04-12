@@ -87,7 +87,6 @@ class WebApplication(ApmBaseService):
 
     def get_web_monitor_data(self, web_app_id, web_monitor_id, **kwargs):
         '''Get monitoring data for a web app from a specific web monitor, by web_app_id and web_monitor_id.
-        Additional 'to_time', 'from_time' and 'metric' parameters can be passed for filtering purposes.
 
         Parameters:
         web_app_id (required)
